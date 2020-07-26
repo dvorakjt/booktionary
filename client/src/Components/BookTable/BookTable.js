@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+import { Link } from "react-router-dom";
 
 //context
 import { useBookStoreContext } from '../../Utils/BookStore';
@@ -26,6 +27,27 @@ function BookTable({ books, myBooks }) {
 
     }
 
+    async function handleDelete(bookIndex) {
+        try {
+            const deletion = await axios.delete(PORT + `/api/delete/${books[bookIndex].googleId}`);
+            const response = await axios.get(PORT + '/api/getbooks');
+            dispatch({
+                type: "UPDATE_MY_BOOKS",
+                myBooks: response.data
+            });
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
+    function handleView(bookIndex) {
+        dispatch({
+            type: "UPDATE_CURRENT_BOOK",
+            currentBook: books[bookIndex]
+        });
+    }
+
     return (
         <table>
             <thead>
@@ -44,7 +66,7 @@ function BookTable({ books, myBooks }) {
                             <td><a href={book.link} target="_blank"><img src={book.imgUrl} alt={`Cover of ${book.title}`} /></a></td>
                             <td><a href={book.link} target="_blank">{book.title}</a></td>
                             <td>{book.authors}</td>
-                            <td><button className="viewBtn">View</button></td>
+                            <td><Link to="/viewbook"><button type="button" className="viewBtn" onClick={() => { handleView(index) }} title="View this book."><i className="fas fa-eye"></i></button></Link></td>
                             <td>
                                 {(() => {
                                     let bookAdded = false;
@@ -56,9 +78,9 @@ function BookTable({ books, myBooks }) {
                                         })
                                     }
                                     if (!bookAdded) {
-                                        return <button className="addBtn" onClick={() => { handleAdd(index) }}>Add this book!</button>
+                                        return <button className="addBtn" onClick={() => { handleAdd(index) }} title="Add this book."><i className="fas fa-plus"></i></button>
                                     } else {
-                                        return <button className="deleteBtn">Remove this book</button>
+                                        return <button className="deleteBtn" title="Remove this book." onClick={() => { handleDelete(index) }}><i className="fas fa-times"></i></button>
                                     }
                                 })()}
                             </td>

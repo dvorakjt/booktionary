@@ -28,28 +28,31 @@ td {
 }
 
 .viewBtn {
-    width: 60px;
+    width: 40px;
     height: 40px;
     background-color: blue;
     border: none;
     color: white;
-    border-radius: 7px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .addBtn {
-    width: 80px;
+    width: 40px;
     height: 40px;
     background-color: rgb(0, 182, 121);
     border: none;
     color: white;
-    border-radius: 7px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .deleteBtn {
-    width: 80px;
+    width: 40px;
     height: 40px;
     background-color: rgb(255, 0, 0);
     border: none;
     color: white;
-    border-radius: 7px;
+    border-radius: 50%;
+    cursor: pointer;
 }

@@ -42,6 +42,14 @@ app.get("/api/getbooks", (req, res) => {
   });
 });
 
+app.delete("/api/delete/:googleId", (req, res) => {
+  const { googleId } = req.params;
+  Book.deleteOne({ googleId: googleId }, function (err, results) {
+    if (err) console.log(err);
+    else res.json(results);
+  });
+});
+
 
 // Send every other request to the React app
 // Define any API routes before this runs

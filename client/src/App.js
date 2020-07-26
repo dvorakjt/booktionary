@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SearchBooks from './Pages/SearchBooks/SearchBooks';
 import MyBooks from './Pages/MyBooks/MyBooks';
 import NoMatch from './Pages/NoMatch/NoMatch';
+import ViewBook from './Pages/ViewBook/ViewBook';
 
 //Global Store!
 import { BookStoreProvider } from './Utils/BookStore';
@@ -21,6 +22,9 @@ function App() {
             </Route>
             <Route exact path="/mybooks">
               <MyBooks />
+            </Route>
+            <Route exact path="/viewbook">
+              <ViewBook />
             </Route>
             <Route>
               <NoMatch />
