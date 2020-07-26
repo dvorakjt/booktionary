@@ -14,6 +14,7 @@ function Searchbar({ scope }) {
 
     async function onSubmit(event) {
         event.preventDefault();
+        event.stopPropagation();
         if (scope === "google") {
             const searchTerm = searchRef.current.value;
             let searchResults = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&projection=full&key=AIzaSyBoWvSRWFtCmv6DnJkFjs5EKzzicpv7Ybg`);
@@ -55,10 +56,10 @@ function Searchbar({ scope }) {
 
     return (
         <form>
-            <label for="bookSearch">{scope === "google" ? "Search Google Books:" : "Search My Books:"}</label>
+            <label htmlFor="bookSearch">{scope === "google" ? "Search Google Books:" : "Search My Books:"}</label>
             <figure id="searchWrapper">
                 <input type="text" id="bookSearch" name="bookSearch" ref={searchRef} />
-                <button type="submit" id="searchBtn"><i class="fas fa-search" onClick={onSubmit}></i></button>
+                <button type="button" id="searchBtn"><i className="fas fa-search" onClick={onSubmit}></i></button>
             </figure>
         </form>
     )

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const BookSchema = new Schema({
-    id: {
+    googleId: {
         type: String,
         required: "id is required"
     },
