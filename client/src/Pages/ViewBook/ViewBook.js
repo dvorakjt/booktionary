@@ -3,6 +3,7 @@ import React from 'react';
 //Components
 import Breadcrumb from '../../Components/Breadcrumb/Breadcrumb';
 import Header from '../../Components/Header/Header';
+import Footer from '../../Components/Footer/Footer';
 
 import { useBookStoreContext } from '../../Utils/BookStore';
 
@@ -23,6 +24,7 @@ function ViewBook() {
                 <p>{book.description}</p>
                 <a href={book.link} target="_blank">{`View ${book.title} on Google books.`}</a>
             </div>
+            <Footer />
         </>
     )
 }

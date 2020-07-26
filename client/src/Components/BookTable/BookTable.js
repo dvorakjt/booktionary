@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { useBookStoreContext } from '../../Utils/BookStore';
 
 //determine the correct port
-const PORT = process.env.PORT || 'http://localhost:3001';
+let PORT = process.env.PORT || 'http://localhost:3001';
+if (process.env.PORT) { PORT = "" };
 
 const axios = require('axios');
 
@@ -55,8 +56,8 @@ function BookTable({ books, myBooks }) {
                     <th>Image</th>
                     <th>Title</th>
                     <th>Authors</th>
-                    <th>View</th>
-                    <th>Add/Delete</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

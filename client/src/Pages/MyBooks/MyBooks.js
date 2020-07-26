@@ -5,13 +5,15 @@ import Breadcrumb from '../../Components/Breadcrumb/Breadcrumb';
 import Header from '../../Components/Header/Header';
 import Searchbar from '../../Components/Searchbar/Searchbar';
 import BookTable from '../../Components/BookTable/BookTable';
+import Footer from '../../Components/Footer/Footer';
 
 import { useBookStoreContext } from '../../Utils/BookStore';
 
 const axios = require('axios');
 
 //determine the correct port
-const PORT = process.env.PORT || 'http://localhost:3001';
+let PORT = process.env.PORT || 'http://localhost:3001';
+if (process.env.PORT) { PORT = "" };
 
 function MyBooks() {
     const [state, dispatch] = useBookStoreContext();
@@ -38,7 +40,8 @@ function MyBooks() {
             <Header />
             <Breadcrumb />
             <Searchbar scope="mybooks" />
-            <BookTable books={state.myBooks} myBooks={state.myBooks} />
+            <BookTable books={state.myBooks.filter(book => book.title.includes(state.filter))} myBooks={state.myBooks} />
+            <Footer />
         </>
     )
 }

@@ -48,7 +48,7 @@ function Searchbar({ scope }) {
         else if (scope === "mybooks") {
             const searchTerm = searchRef.current.value;
             dispatch({
-                type: "UPDATE_Filter",
+                type: "UPDATE_FILTER",
                 filter: searchTerm
             });
         }
