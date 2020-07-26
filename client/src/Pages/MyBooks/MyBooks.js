@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 //Components
 import Breadcrumb from '../../Components/Breadcrumb/Breadcrumb';
@@ -8,8 +8,31 @@ import BookTable from '../../Components/BookTable/BookTable';
 
 import { useBookStoreContext } from '../../Utils/BookStore';
 
+const axios = require('axios');
+
+//determine the correct port
+const PORT = process.env.PORT || 'http://localhost:3001';
+
 function MyBooks() {
     const [state, dispatch] = useBookStoreContext();
+
+    useEffect(() => {
+        async function fetchData() {
+            if (state.myBooks.length < 1) {
+                try {
+                    const response = await axios.get(PORT + '/api/getbooks');
+                    dispatch({
+                        type: "UPDATE_MY_BOOKS",
+                        myBooks: response.data
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        }
+        fetchData();
+    }, [])
+
     return (
         <>
             <Header />

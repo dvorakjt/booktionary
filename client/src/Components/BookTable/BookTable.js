@@ -40,7 +40,7 @@ function BookTable({ books, myBooks }) {
             <tbody>
                 {books.map((book, index) => {
                     return (
-                        <tr>
+                        <tr key={index.toString()}>
                             <td><a href={book.link} target="_blank"><img src={book.imgUrl} alt={`Cover of ${book.title}`} /></a></td>
                             <td><a href={book.link} target="_blank">{book.title}</a></td>
                             <td>{book.authors}</td>
