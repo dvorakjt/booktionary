@@ -7,7 +7,7 @@ const Book = require('./models/book');
 const cors = require('cors');
 
 //connect to the database!
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://user1:password1@ds161295.mlab.com:61295/heroku_l5lj2v1z");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
